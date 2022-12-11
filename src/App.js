@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Massage from './Massage';
+import { useState,useEffect } from 'react';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const [input,setInput]=useState() 
+const [password,setPassword]=useState(false)
+
+useEffect(()=>{
+  if(password){
+    setPassword(false)
+    password(false)
+  }
+},[handelInput])
+
+function handelInput(input){
+  console.log(input)
+  setInput(Number(input.target.value)) 
+}
+
+return (
+    <div className="App" >
+    <h1> New App</h1>
+    <p><b> Please enter a password :</b></p>
+    <input type='number' onChange={handelInput}/>
+    <button>Submit</button>
+    <Massage input={input}/>
     </div>
+
   );
 }
 
