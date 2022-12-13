@@ -1,27 +1,26 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 
 function Massage(props) {
   
   const {input} = props;
-  const[string,setString] = useState();
+  const [string,setString]=useState("empty")
 
-
-  function cheString(){
+  useEffect(()=>{
     if(input.length <=2){
-      setString("week")
+      setString("Short password")
     }
-    if(2<input.length<=6){
-      setString("medium")
+    else if(input.length <=6){
+      setString("Medium password")
     }
-    if(input.length >6){
-      setString("strong")
+    else if(input.length >7){
+      setString("Strong password")
     }
-  }
+  },[setString,input])
+
+   
   return (
-    <div className="App">
-      <h3></h3>
-    <h3><button onClick={cheString} >click</button> </h3>
-    <p>{string}</p>
+    <div >
+    <h3> {string} </h3>
     </div>
   );
 }
